@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>情侣日记</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="journal-panel" aria-label="情侣日记">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Our Journal</p>
+            <h1>情侣日记</h1>
+          </div>
+          <div class="day-chip" id="todayChip"></div>
+        </header>
+
+        <section class="hero">
+          <div class="photo-strip" aria-hidden="true">
+            <div class="photo-card photo-card-a"></div>
+            <div class="photo-card photo-card-b"></div>
+            <div class="photo-card photo-card-c"></div>
+          </div>
+          <div class="memory-card">
+            <span class="memory-label">今日小记</span>
+            <p id="dailyLine">把普通的一天，写成只属于我们的章节。</p>
+          </div>
+        </section>
+
+        <section class="composer" aria-label="写日记">
+          <form id="entryForm">
+            <div class="form-grid">
+              <label>
+                <span>标题</span>
+                <input id="titleInput" name="title" type="text" maxlength="36" placeholder="今天最想记住的瞬间" required>
+              </label>
+              <label>
+                <span>日期</span>
+                <input id="dateInput" name="date" type="date" required>
+              </label>
+              <label>
+                <span>心情</span>
+                <select id="moodInput" name="mood">
+                  <option value="甜蜜">甜蜜</option>
+                  <option value="想念">想念</option>
+                  <option value="开心">开心</option>
+                  <option value="平静">平静</option>
+                  <option value="纪念">纪念</option>
+                </select>
+              </label>
+              <label>
+                <span>地点</span>
+                <input id="placeInput" name="place" type="text" maxlength="24" placeholder="比如：江边、家里、咖啡店">
+              </label>
+            </div>
+            <label class="wide-field">
+              <span>内容</span>
+              <textarea id="contentInput" name="content" rows="5" maxlength="700" placeholder="写下今天发生的小事、想说的话、一起期待的未来..." required></textarea>
+            </label>
+            <div class="composer-actions">
+              <button class="secondary-button" id="clearButton" type="button">清空</button>
+              <button class="primary-button" type="submit">保存日记</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <aside class="timeline-panel" aria-label="日记列表">
+        <div class="timeline-head">
+          <div>
+            <p class="eyebrow">Timeline</p>
+            <h2>我们的记录</h2>
+          </div>
+          <div class="count-pill"><span id="entryCount">0</span> 篇</div>
+        </div>
+        <div class="filters" role="tablist" aria-label="筛选心情">
+          <button class="filter active" type="button" data-filter="全部">全部</button>
+          <button class="filter" type="button" data-filter="甜蜜">甜蜜</button>
+          <button class="filter" type="button" data-filter="想念">想念</button>
+          <button class="filter" type="button" data-filter="开心">开心</button>
+          <button class="filter" type="button" data-filter="纪念">纪念</button>
+        </div>
+        <div class="entries" id="entriesList"></div>
+      </aside>
+    </main>
+
+    <template id="entryTemplate">
+      <article class="entry-card">
+        <div class="entry-meta">
+          <span class="entry-date"></span>
+          <span class="entry-mood"></span>
+        </div>
+        <h3></h3>
+        <p class="entry-place"></p>
+        <p class="entry-content"></p>
+        <div class="entry-actions">
+          <button class="text-button edit-entry" type="button">编辑</button>
+          <button class="text-button delete-entry" type="button">删除</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
