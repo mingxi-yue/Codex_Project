@@ -107,6 +107,22 @@ h2 {
   font-size: 1.55rem;
 }
 
+.topbar-meta {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+
+.anniversary-chip {
+  border: 1px solid rgba(75, 140, 138, 0.32);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--aqua);
+  background: rgba(229, 247, 246, 0.72);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .day-chip,
 .count-pill {
   flex: 0 0 auto;
