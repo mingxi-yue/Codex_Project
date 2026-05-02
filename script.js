@@ -1,4 +1,6 @@
 const STORAGE_KEY = "couple-journal-entries";
+const ANNIVERSARY_MONTH = 3;
+const ANNIVERSARY_DAY = 26;
 
 const form = document.querySelector("#entryForm");
 const titleInput = document.querySelector("#titleInput");
@@ -148,12 +150,12 @@ function handleFilterClick(event) {
 function getAnniversaryText() {
   const now = new Date();
   const year = now.getFullYear();
-  const thisYearAnniversary = new Date(year, 1, 8);
-  const nextAnniversary = now <= thisYearAnniversary ? thisYearAnniversary : new Date(year + 1, 1, 8);
+  const thisYearAnniversary = new Date(year, ANNIVERSARY_MONTH - 1, ANNIVERSARY_DAY);
+  const nextAnniversary = now <= thisYearAnniversary ? thisYearAnniversary : new Date(year + 1, ANNIVERSARY_MONTH - 1, ANNIVERSARY_DAY);
   const daysLeft = Math.ceil((nextAnniversary - now) / (1000 * 60 * 60 * 24));
   return daysLeft === 0
     ? "结婚纪念日 · 今天 ❤️"
-    : `结婚纪念日 · 2月8日（还有 ${daysLeft} 天）`;
+    : `结婚纪念日 · ${ANNIVERSARY_MONTH}月${ANNIVERSARY_DAY}日（还有 ${daysLeft} 天）`;
 }
 
 function initialize() {
