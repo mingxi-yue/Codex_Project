@@ -11,6 +11,7 @@ const entriesList = document.querySelector("#entriesList");
 const entryTemplate = document.querySelector("#entryTemplate");
 const entryCount = document.querySelector("#entryCount");
 const todayChip = document.querySelector("#todayChip");
+const anniversaryChip = document.querySelector("#anniversaryChip");
 const dailyLine = document.querySelector("#dailyLine");
 const filters = [...document.querySelectorAll(".filter")];
 
@@ -144,10 +145,22 @@ function handleFilterClick(event) {
   renderEntries();
 }
 
+function getAnniversaryText() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const thisYearAnniversary = new Date(year, 1, 8);
+  const nextAnniversary = now <= thisYearAnniversary ? thisYearAnniversary : new Date(year + 1, 1, 8);
+  const daysLeft = Math.ceil((nextAnniversary - now) / (1000 * 60 * 60 * 24));
+  return daysLeft === 0
+    ? "结婚纪念日 · 今天 ❤️"
+    : `结婚纪念日 · 2月8日（还有 ${daysLeft} 天）`;
+}
+
 function initialize() {
   const today = getTodayValue();
   dateInput.value = today;
   todayChip.textContent = formatDate(today);
+  anniversaryChip.textContent = getAnniversaryText();
   dailyLine.textContent = lines[new Date().getDate() % lines.length];
   form.addEventListener("submit", handleSubmit);
   clearButton.addEventListener("click", resetForm);
